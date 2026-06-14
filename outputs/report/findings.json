@@ -1,0 +1,183 @@
+{
+  "p1_tasa_aprobacion_global": 47.21,
+  "p1_modulo_mayor_aprobacion": [
+    "AAA",
+    70.99
+  ],
+  "p1_modulo_menor_aprobacion": [
+    "CCC",
+    37.84
+  ],
+  "p1_dist_resultados": {
+    "Distinction": 9.28,
+    "Pass": 37.93,
+    "Fail": 21.64,
+    "Withdrawn": 31.16
+  },
+  "p2_clicks_por_resultado": {
+    "Distinction": {
+      "mean": 2666.8,
+      "median": 1896.0
+    },
+    "Pass": {
+      "mean": 1921.8,
+      "median": 1343.0
+    },
+    "Fail": {
+      "mean": 651.9,
+      "median": 317.0
+    },
+    "Withdrawn": {
+      "mean": 314.0,
+      "median": 89.0
+    }
+  },
+  "p2_kruskal_H": 14857.48,
+  "p2_kruskal_p": 0.0,
+  "p2_spearman_rho": 0.356,
+  "p3_chi2": {
+    "age_band": 2.8310914670885406e-45,
+    "gender": 0.0008827203938431326,
+    "highest_education": 9.182113007265443e-212,
+    "disability": 8.143196121271437e-30
+  },
+  "p3_odds_ratio_discapacidad": 1.49,
+  "p3_retiro_discapacidad": [
+    39.3,
+    30.3
+  ],
+  "p4_pct_30d": 50.9,
+  "p4_pct_90d": 69.8,
+  "p4_pct_180d": 92.5,
+  "p4_mediana_dia_retiro": 27.0,
+  "p4_modulo_abandono_temprano": [
+    "CCC",
+    21.0
+  ],
+  "p5_metricas": {
+    "AAA": {
+      "tasa_aprobacion": 71.0,
+      "tasa_retiro": 16.8,
+      "tasa_distincion": 5.9,
+      "tasa_reprobacion": 12.2,
+      "n_estudiantes": 748,
+      "score_promedio": 68.3,
+      "clicks_promedio": 1666.6
+    },
+    "BBB": {
+      "tasa_aprobacion": 47.5,
+      "tasa_retiro": 30.2,
+      "tasa_distincion": 8.6,
+      "tasa_reprobacion": 22.3,
+      "n_estudiantes": 7909,
+      "score_promedio": 73.3,
+      "clicks_promedio": 661.8
+    },
+    "CCC": {
+      "tasa_aprobacion": 37.8,
+      "tasa_retiro": 44.5,
+      "tasa_distincion": 11.2,
+      "tasa_reprobacion": 17.6,
+      "n_estudiantes": 4434,
+      "score_promedio": 67.1,
+      "clicks_promedio": 1056.0
+    },
+    "DDD": {
+      "tasa_aprobacion": 41.6,
+      "tasa_retiro": 35.9,
+      "tasa_distincion": 6.1,
+      "tasa_reprobacion": 22.5,
+      "n_estudiantes": 6272,
+      "score_promedio": 67.4,
+      "clicks_promedio": 881.7
+    },
+    "EEE": {
+      "tasa_aprobacion": 56.2,
+      "tasa_retiro": 24.6,
+      "tasa_distincion": 12.1,
+      "tasa_reprobacion": 19.2,
+      "n_estudiantes": 2934,
+      "score_promedio": 80.0,
+      "clicks_promedio": 1358.0
+    },
+    "FFF": {
+      "tasa_aprobacion": 47.0,
+      "tasa_retiro": 31.0,
+      "tasa_distincion": 8.6,
+      "tasa_reprobacion": 22.0,
+      "n_estudiantes": 7762,
+      "score_promedio": 75.6,
+      "clicks_promedio": 2266.7
+    },
+    "GGG": {
+      "tasa_aprobacion": 59.8,
+      "tasa_retiro": 11.5,
+      "tasa_distincion": 15.6,
+      "tasa_reprobacion": 28.7,
+      "n_estudiantes": 2534,
+      "score_promedio": 77.5,
+      "clicks_promedio": 526.4
+    }
+  },
+  "p5_top_aprobacion": "AAA",
+  "p5_top_retiro": "CCC",
+  "p6_score_a_tiempo": 76.35,
+  "p6_score_tardia": 75.02,
+  "p6_mannwhitney_p": 0.7222327840316671,
+  "p7_k_opt": 4,
+  "p7_pca_var": 0.629,
+  "p7_perfil": [
+    {
+      "cluster": 0,
+      "n": 7781,
+      "clicks_medios": 1086.0,
+      "score_medio": 77.4,
+      "dias_activos_medios": 59.8,
+      "educacion_media": 2.0,
+      "imd_media": 7.1,
+      "Distinction": 12.5,
+      "Pass": 53.7,
+      "Fail": 18.0,
+      "Withdrawn": 15.8
+    },
+    {
+      "cluster": 1,
+      "n": 4307,
+      "clicks_medios": 521.2,
+      "score_medio": 45.5,
+      "dias_activos_medios": 32.5,
+      "educacion_media": 1.6,
+      "imd_media": 3.6,
+      "Distinction": 0.2,
+      "Pass": 17.9,
+      "Fail": 45.0,
+      "Withdrawn": 37.0
+    },
+    {
+      "cluster": 2,
+      "n": 4293,
+      "clicks_medios": 4534.5,
+      "score_medio": 82.0,
+      "dias_activos_medios": 159.2,
+      "educacion_media": 1.9,
+      "imd_media": 4.4,
+      "Distinction": 27.7,
+      "Pass": 66.3,
+      "Fail": 4.7,
+      "Withdrawn": 1.4
+    },
+    {
+      "cluster": 3,
+      "n": 9176,
+      "clicks_medios": 989.3,
+      "score_medio": 77.2,
+      "dias_activos_medios": 54.2,
+      "educacion_media": 1.6,
+      "imd_media": 2.1,
+      "Distinction": 9.3,
+      "Pass": 49.7,
+      "Fail": 22.7,
+      "Withdrawn": 18.4
+    }
+  ]
+}

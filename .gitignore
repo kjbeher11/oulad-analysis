@@ -1,0 +1,19 @@
+# Datos crudos (pueden ser grandes; descargar desde la fuente OULAD)
+# Comenta la línea siguiente si deseas versionar los CSV.
+data/raw/*.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# Jupyter
+*.nbconvert.ipynb
+
+# Sistema
+.DS_Store
+Thumbs.db
