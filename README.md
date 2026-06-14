@@ -43,7 +43,6 @@ oulad-analysis/
 │   └── report/
 │       ├── informe_oulad.md  # Relatório final completo (português)
 │       └── findings.json     # Achados numéricos exportados pelo notebook
-├── build_notebook.py         # Gera analysis.ipynb de forma programática
 ├── requirements.txt          # Dependências com versões fixas
 └── README.md
 ```
@@ -79,8 +78,7 @@ jupyter notebook notebooks/analysis.ipynb
 
 > O notebook verifica automaticamente que os 7 CSV existam em `data/raw/` e
 > lança um erro claro se faltar algum. Pode ser executado do início ao fim com
-> **Run All Cells**. Também pode ser regerado com `python build_notebook.py` e
-> executado em lote com
+> **Run All Cells**. Também pode ser executado em lote com
 > `jupyter nbconvert --to notebook --execute --inplace notebooks/analysis.ipynb`.
 
 ## Metodologia
