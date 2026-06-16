@@ -30,7 +30,7 @@ Virtual de Aprendizagem (VLE).
 4. **Evasão do curso** — Em que momento os estudantes desistem?
 5. **Comparação entre módulos** — Quais cursos têm maior aprovação ou evasão?
 
-Adicionalmente, dois bônus: (6) análise de avaliações e (7) segmentação de
+Adicionalmente, análise de avaliações e segmentação de
 estudantes com K-Means.
 
 ---
