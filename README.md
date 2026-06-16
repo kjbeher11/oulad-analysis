@@ -39,9 +39,9 @@ oulad-analysis/
 │   ├── preprocess.py         # Limpeza e construção do df_master
 │   └── visualizations.py     # Utilitários de plotagem reutilizáveis
 ├── outputs/
-│   ├── figures/              # 28 visualizações em PNG (150 dpi), rótulos em inglês
+│   ├── figures/              # 28 visualizações em PNG 
 │   └── report/
-│       ├── informe_oulad.md  # Relatório final completo (português)
+│       ├── informe_oulad.md  
 │       └── findings.json     # Achados numéricos exportados pelo notebook
 ├── requirements.txt          # Dependências com versões fixas
 └── README.md
