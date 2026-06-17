@@ -29,9 +29,6 @@ import pandas as pd
 
 JOIN_KEYS = ["id_student", "code_module", "code_presentation"]
 
-# Resultados considerados "éxito" para la tarea predictiva binaria.
-SUCCESS = {"Pass", "Distinction"}
-
 
 def enrich_vle(
     df_vle: pd.DataFrame,
@@ -128,62 +125,38 @@ def composition_by_result(
     return pct
 
 
-def predictive_window(
-    df_enriched: pd.DataFrame,
-    df_info: pd.DataFrame,
-    cutoffs: List[int],
-    activities: List[str],
-    random_state: int = 42,
+def clicks_by_activity_per_student(
+    df_vle: pd.DataFrame,
+    df_vle_meta: pd.DataFrame,
+    activities: List[str] | None = None,
+    n: int = 8,
 ) -> pd.DataFrame:
     """
-    Para cada semana de corte k en `cutoffs`, construye features = clics
-    acumulados por activity_type en las semanas [0, k] por estudante, y entrena
-    una regresión logística para predecir el ÉXITO (Pass/Distinction = 1 vs
-    Fail/Withdrawn = 0). Devuelve el AUC medio (validación cruzada 4-fold).
+    Tabla ancha de clics por estudante-curso desglosados por activity_type.
 
-    Devuelve DataFrame: [semana_corte, auc, n_estudiantes, tasa_exito].
+    Útil para enriquecer la segmentación K-Means con la dimensión de *qué tipo*
+    de actividad usa cada estudante (no solo cuántos clics totales).
+
+    Devuelve un DataFrame con las claves estudante-curso y una columna por cada
+    tipo de actividad, nombrada `act_<tipo>` (clics totales en toda la
+    presentación). Si `activities` es None, usa los `n` tipos con más clics.
     """
-    from sklearn.linear_model import LogisticRegression
-    from sklearn.model_selection import cross_val_score
-    from sklearn.pipeline import make_pipeline
-    from sklearn.preprocessing import StandardScaler
+    site2act = df_vle_meta.set_index("id_site")["activity_type"]
+    df = df_vle[["id_student", "code_module", "code_presentation", "id_site", "sum_click"]].copy()
+    df["activity_type"] = df["id_site"].map(site2act)
 
-    # Target por estudante-curso.
-    target = df_info[JOIN_KEYS + ["resultado"]].copy()
-    target["resultado"] = target["resultado"].astype(str)
-    target["y"] = target["resultado"].isin(SUCCESS).astype(int)
-    target = target.set_index(JOIN_KEYS)["y"]
+    if activities is None:
+        activities = (
+            df.groupby("activity_type", observed=True)["sum_click"].sum()
+            .sort_values(ascending=False).head(n).index.tolist()
+        )
 
-    # Pre-agregado compacto: clics por (clave, activity_type, week).
-    sub = df_enriched[df_enriched["activity_type"].isin(activities)]
-    g = (
-        sub.groupby(JOIN_KEYS + ["activity_type", "week"], observed=True)["sum_click"]
+    df = df[df["activity_type"].isin(activities)]
+    piv = (
+        df.groupby(JOIN_KEYS + ["activity_type"], observed=True)["sum_click"]
         .sum()
-        .reset_index()
+        .unstack(fill_value=0)
     )
-
-    rows = []
-    for k in cutoffs:
-        gk = g[g["week"] <= k]
-        feats = (
-            gk.groupby(JOIN_KEYS + ["activity_type"], observed=True)["sum_click"]
-            .sum()
-            .unstack(fill_value=0)
-        )
-        feats = feats.reindex(columns=activities, fill_value=0)
-        # Estudantes sin actividad hasta k: features en 0.
-        feats = feats.reindex(target.index, fill_value=0)
-        y = target.loc[feats.index]
-        X = feats.values
-
-        clf = make_pipeline(
-            StandardScaler(), LogisticRegression(max_iter=1000, random_state=random_state)
-        )
-        auc = cross_val_score(clf, X, y, cv=4, scoring="roc_auc").mean()
-        rows.append({
-            "semana_corte": k,
-            "auc": round(float(auc), 4),
-            "n_estudiantes": int(len(y)),
-            "tasa_exito": round(float(y.mean()) * 100, 2),
-        })
-    return pd.DataFrame(rows)
+    piv = piv.reindex(columns=activities, fill_value=0)
+    piv.columns = [f"act_{c}" for c in piv.columns]
+    return piv.reset_index()

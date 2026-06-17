@@ -202,7 +202,7 @@ primeiro mês do curso.
 `p5_C_lollipop_retiro.png`, `p5_D_heatmap_metricas.png`,
 `p5_E_scatter_modulos.png`.
 
-### Bônus 6 — Análise das avaliações
+### Análise das avaliações
 - O score médio é semelhante entre as avaliações contínuas, com os exames
   finais apresentando a maior dispersão.
 - **Achado não intuitivo:** entregar **atrasado** **não** se associa a notas
@@ -213,35 +213,29 @@ primeiro mês do curso.
 *Figuras:* `p6_A_scores_por_tipo.png`, `p6_B_evolucion_score.png`,
 `p6_C_entrega_tardia.png`.
 
-### Bônus 7 — Segmentação com K-Means
-Com **K = 4** clusters (método do cotovelo) e PCA 2D que explica **62,9%** da
-variância, emergem perfis claros:
+### Segmentação com K-Means
+Features: cliques totais, score médio, dias ativos, escolaridade, IMD **e os
+cliques por `activity_type`** (top 8 tipos). Com **K = 4** clusters (método do
+cotovelo) e PCA 2D que explica **50,4%** da variância, emergem perfis claros:
 
 | Cluster | N | Cliques médios | Score médio | Dias ativos | Perfil |
 |---:|---:|---:|---:|---:|---|
-| 2 | 4.293 | 4.535 | 82,0 | 159 | **Alto desempenho / muito ativos** (27,7% distinção). |
-| 0 | 7.781 | 1.086 | 77,4 | 60 | Bom desempenho, atividade média-alta. |
-| 3 | 9.176 | 989 | 77,2 | 54 | Desempenho médio, contexto socioeconômico baixo (IMD baixo). |
-| 1 | 4.307 | 521 | 45,5 | 33 | **Baixo desempenho / em risco** (37% evasão, 45% reprovação). |
+| 3 | 674 | 6.939 | 84,1 | 206 | **Elite / hiperativos** (37,5% distinção, 1,6% evasão). |
+| 0 | 2.272 | 4.934 | 81,0 | 147 | **Alto desempenho / muito ativos** (25,2% distinção). |
+| 1 | 7.577 | 1.969 | 79,4 | 103 | Bom desempenho, atividade média-alta. |
+| 2 | 15.034 | 561 | 67,6 | 36 | **Baixo desempenho / em risco** (31,4% reprovação, 27,0% evasão). |
+
+Ao incluir o `activity_type`, os perfis passam a refletir não só *quanto* o
+estudante clica, mas *em que tipo de recurso* — separando melhor o grupo de
+elite (uso intenso de conteúdo e fórum) do grupo em risco (pouca atividade e
+predomínio de navegação).
 
 *Figuras:* `p7_A_metodo_codo.png`, `p7_B_pca_clusters.png`.
 
-### Bônus 8 — Análise temporal do clique por `activity_type` (VLE)
+### Análise temporal do clique por `activity_type` (VLE)
 Esta seção explora a dimensão mais rica do dataset: o clique diário desagregado
 por **tipo de atividade** (`activity_type`), cruzando `studentVle` com `vle`.
 Os tipos dominantes são **oucontent, forumng, quiz e homepage**.
-
-**Janela preditiva (achado central):** treinando uma regressão logística sobre
-os cliques acumulados por tipo de atividade, o poder preditivo do sucesso
-(Pass/Distinction vs Fail/Withdrawn) evolui assim:
-
-| Semana de corte | 0 | 1 | 4 | 10 | 20 |
-|---|---:|---:|---:|---:|---:|
-| ROC-AUC | 0,69 | 0,71 | 0,73 | 0,76 | 0,83 |
-
-- **Já na semana 1 o AUC atinge 0,70** e na semana 20 chega a **0,83**: é
-  possível prever o resultado **muito cedo**, o que viabiliza alertas de
-  retenção nas primeiras semanas.
 
 **Composição por resultado:** quem obtém **Distinction** concentra mais cliques
 em **conteúdo** (`oucontent` 28%) e **fórum** (`forumng` 24%), enquanto os
@@ -253,8 +247,12 @@ material de aprendizagem.
 empilhada de cliques médios por estudante, por semana e tipo de atividade, com
 menu para alternar entre os grupos de resultado.
 
+Além disso, estas features de `activity_type` por estudante alimentam a
+segmentação **K-Means** (Bônus 7), tornando os perfis mais ricos: distinguem não
+só *quanto* o estudante clica, mas *em que tipo de recurso*.
+
 *Figuras:* `p8_A_weekly_heatmap.png`, `p8_B_composition_by_result.png`,
-`p8_C_predictive_window.png`, `p8_interactive_activity_weekly.html`.
+`p8_interactive_activity_weekly.html`.
 
 ---
 
@@ -272,8 +270,9 @@ menu para alternar entre os grupos de resultado.
 4. **A deficiência eleva o risco de evasão** (OR = 1,49; 39,3% vs 30,3% de
    evasão), indicando a necessidade de apoio específico.
 5. **Há grande heterogeneidade entre módulos**: AAA aprova 71% enquanto CCC tem
-   evasão de 44,5%; o clustering confirma um segmento "em risco" (~4.300
-   estudantes) com baixa atividade e alta evasão.
+   evasão de 44,5%; o clustering (com features de `activity_type`) isola um
+   grande segmento "em risco" (~15.000 estudantes) com baixa atividade, 31% de
+   reprovação e 27% de evasão.
 
 ### Limitações da análise
 - Os dados são **observacionais**: as associações (p.ex. cliques ↔ sucesso)

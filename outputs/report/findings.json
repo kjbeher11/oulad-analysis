@@ -125,59 +125,59 @@
   "p6_score_tardia": 75.02,
   "p6_mannwhitney_p": 0.7222327840316671,
   "p7_k_opt": 4,
-  "p7_pca_var": 0.629,
+  "p7_pca_var": 0.504,
   "p7_perfil": [
     {
       "cluster": 0,
-      "n": 7781,
-      "clicks_medios": 1086.0,
-      "score_medio": 77.4,
-      "dias_activos_medios": 59.8,
-      "educacion_media": 2.0,
-      "imd_media": 7.1,
-      "Distinction": 12.5,
-      "Pass": 53.7,
-      "Fail": 18.0,
-      "Withdrawn": 15.8
-    },
-    {
-      "cluster": 1,
-      "n": 4307,
-      "clicks_medios": 521.2,
-      "score_medio": 45.5,
-      "dias_activos_medios": 32.5,
-      "educacion_media": 1.6,
-      "imd_media": 3.6,
-      "Distinction": 0.2,
-      "Pass": 17.9,
-      "Fail": 45.0,
-      "Withdrawn": 37.0
-    },
-    {
-      "cluster": 2,
-      "n": 4293,
-      "clicks_medios": 4534.5,
-      "score_medio": 82.0,
-      "dias_activos_medios": 159.2,
-      "educacion_media": 1.9,
-      "imd_media": 4.4,
-      "Distinction": 27.7,
-      "Pass": 66.3,
-      "Fail": 4.7,
+      "n": 2272,
+      "clicks_medios": 4933.8,
+      "score_medio": 81.0,
+      "dias_activos_medios": 147.0,
+      "educacion_media": 1.8,
+      "imd_media": 4.3,
+      "Distinction": 25.2,
+      "Pass": 67.1,
+      "Fail": 6.3,
       "Withdrawn": 1.4
     },
     {
+      "cluster": 1,
+      "n": 7577,
+      "clicks_medios": 1968.6,
+      "score_medio": 79.4,
+      "dias_activos_medios": 102.5,
+      "educacion_media": 2.0,
+      "imd_media": 4.8,
+      "Distinction": 18.6,
+      "Pass": 65.7,
+      "Fail": 9.6,
+      "Withdrawn": 6.1
+    },
+    {
+      "cluster": 2,
+      "n": 15034,
+      "clicks_medios": 561.2,
+      "score_medio": 67.6,
+      "dias_activos_medios": 35.6,
+      "educacion_media": 1.7,
+      "imd_media": 4.0,
+      "Distinction": 5.2,
+      "Pass": 36.3,
+      "Fail": 31.4,
+      "Withdrawn": 27.0
+    },
+    {
       "cluster": 3,
-      "n": 9176,
-      "clicks_medios": 989.3,
-      "score_medio": 77.2,
-      "dias_activos_medios": 54.2,
-      "educacion_media": 1.6,
-      "imd_media": 2.1,
-      "Distinction": 9.3,
-      "Pass": 49.7,
-      "Fail": 22.7,
-      "Withdrawn": 18.4
+      "n": 674,
+      "clicks_medios": 6939.4,
+      "score_medio": 84.1,
+      "dias_activos_medios": 206.2,
+      "educacion_media": 1.9,
+      "imd_media": 4.6,
+      "Distinction": 37.5,
+      "Pass": 57.3,
+      "Fail": 3.6,
+      "Withdrawn": 1.6
     }
   ],
   "p8_composition_pct": {
@@ -221,29 +221,5 @@
       "resource": 3.6,
       "url": 1.5
     }
-  },
-  "p8_auc_por_corte": {
-    "0": 0.6861,
-    "1": 0.7099,
-    "2": 0.7171,
-    "3": 0.7197,
-    "4": 0.7262,
-    "6": 0.741,
-    "8": 0.7523,
-    "10": 0.7627,
-    "15": 0.7895,
-    "20": 0.8278
-  },
-  "p8_semana_auc_0_70": 1,
-  "p8_semana_auc_0_80": 20,
-  "p8_top_activities": [
-    "oucontent",
-    "forumng",
-    "homepage",
-    "quiz",
-    "subpage",
-    "ouwiki",
-    "resource",
-    "url"
-  ]
+  }
 }
