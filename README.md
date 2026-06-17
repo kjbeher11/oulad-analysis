@@ -109,9 +109,8 @@ Todo o código usa `pathlib` (caminhos relativos) e `random_state=42`.
 4. **A deficiência aumenta o risco de evasão**: **39,3%** de evasão vs **30,3%**
    sem deficiência (**Odds Ratio = 1,49**).
 5. **Forte variabilidade entre módulos**: **AAA** aprova **71%** enquanto **CCC**
-   tem evasão de **44,5%**. O K-Means (K=4, com proporções de `activity_type`)
-   separa perfis de aprendizagem por *estilo* de uso, isolando ~16.000
-   estudantes de baixo desempenho (22–26% de evasão).
+   tem evasão de **44,5%**. O K-Means (K=4) isola um segmento *em risco* de
+   ~4.300 estudantes com baixa atividade e 37% de evasão.
 
 ## Visualizações
 
@@ -125,14 +124,14 @@ destaque:
 | `p3_E_heatmap_correlacion.png` | Correlação demografia ↔ resultado. |
 | `p4_D_curva_abandono.png` | Curva acumulada de evasão por dia do curso. |
 | `p5_D_heatmap_metricas.png` | Métricas (aprovação/evasão/...) por módulo. |
-| `p7_B_pca_clusters.png` | Segmentação K-Means (com proporções de `activity_type`) no espaço PCA 2D. |
+| `p7_B_pca_clusters.png` | Segmentação K-Means no espaço PCA 2D. |
 | `p8_A_weekly_heatmap.png` | Mix semanal de atividades por `activity_type`. |
 | 🔹 `p8_interactive_activity_weekly.html` | **Visualização interativa (Plotly)**: cliques médios por semana e `activity_type`, com menu por resultado. |
 
 > A análise por `activity_type` (seção 12 do notebook) cruza `studentVle` × `vle`
-> e cobre padrões semanais e a composição de atividades por resultado; as mesmas
-> features alimentam a segmentação K-Means. O destaque é o gráfico **interativo**
-> `p8_interactive_activity_weekly.html` (abre no navegador).
+> e cobre padrões semanais e a composição de atividades por resultado. O destaque
+> é o gráfico **interativo** `p8_interactive_activity_weekly.html` (abre no
+> navegador).
 
 Completo: [`outputs/report/informe_oulad.md`](outputs/report/informe_oulad.md)
 

@@ -214,24 +214,16 @@ primeiro mês do curso.
 `p6_C_entrega_tardia.png`.
 
 ### Segmentação com K-Means
-Features: cliques totais, score médio, dias ativos, escolaridade, IMD **e as
-proporções de cliques por `activity_type`** (top 8 tipos — captam o *estilo* de
-uso, não só o volume). Com **K = 4** clusters (método do cotovelo) e PCA 2D que
-explica **36,4%** da variância, emergem perfis claros:
+Features: cliques totais, score médio, dias ativos, escolaridade e IMD. Com
+**K = 4** clusters (método do cotovelo) e PCA 2D que explica **62,9%** da
+variância, emergem perfis claros:
 
 | Cluster | N | Cliques médios | Score médio | Dias ativos | Perfil |
 |---:|---:|---:|---:|---:|---|
-| 0 | 5.227 | 3.899 | 81,9 | 133 | **Alto engajamento e desempenho** (24,1% distinção, 2,3% evasão). |
-| 3 | 4.475 | 1.159 | 77,9 | 73 | Bom desempenho, atividade moderada. |
-| 2 | 9.902 | 964 | 69,8 | 45 | Desempenho médio (25,9% reprovação, 21,5% evasão). |
-| 1 | 5.953 | 694 | 65,6 | 54 | **Em risco** (31,3% reprovação, 26,2% evasão). |
-
-Ao usar as **proporções** de `activity_type` (em vez de contagens absolutas), a
-segmentação deixa de ser um simples ranking por volume de cliques: note que os
-clusters 1, 2 e 3 têm volumes parecidos (694–1.159 cliques) mas resultados bem
-diferentes, porque agora separam-se pelo *estilo* de uso. O custo é que o PCA 2D
-explica menos variância (36,4%), já que o espaço de features é mais
-alto-dimensional — a projeção 2D é apenas uma referência visual.
+| 2 | 4.293 | 4.535 | 82,0 | 159 | **Alto desempenho / muito ativos** (27,7% distinção). |
+| 0 | 7.781 | 1.086 | 77,4 | 60 | Bom desempenho, atividade média-alta. |
+| 3 | 9.176 | 989 | 77,2 | 54 | Desempenho médio, contexto socioeconômico baixo (IMD baixo). |
+| 1 | 4.307 | 521 | 45,5 | 33 | **Baixo desempenho / em risco** (37% evasão, 45% reprovação). |
 
 *Figuras:* `p7_A_metodo_codo.png`, `p7_B_pca_clusters.png`.
 
@@ -249,10 +241,6 @@ material de aprendizagem.
 **Visualização interativa:** `p8_interactive_activity_weekly.html` (Plotly) — área
 empilhada de cliques médios por estudante, por semana e tipo de atividade, com
 menu para alternar entre os grupos de resultado.
-
-Além disso, estas features de `activity_type` por estudante alimentam a
-segmentação **K-Means** (Bônus 7), tornando os perfis mais ricos: distinguem não
-só *quanto* o estudante clica, mas *em que tipo de recurso*.
 
 *Figuras:* `p8_A_weekly_heatmap.png`, `p8_B_composition_by_result.png`,
 `p8_interactive_activity_weekly.html`.
@@ -273,9 +261,8 @@ só *quanto* o estudante clica, mas *em que tipo de recurso*.
 4. **A deficiência eleva o risco de evasão** (OR = 1,49; 39,3% vs 30,3% de
    evasão), indicando a necessidade de apoio específico.
 5. **Há grande heterogeneidade entre módulos**: AAA aprova 71% enquanto CCC tem
-   evasão de 44,5%; o clustering (com proporções de `activity_type`) separa dois
-   perfis de baixo desempenho (~16.000 estudantes) com 22–26% de evasão e estilo
-   de uso pobre.
+   evasão de 44,5%; o clustering confirma um segmento "em risco" (~4.300
+   estudantes) com baixa atividade e alta evasão (37%).
 
 ### Limitações da análise
 - Os dados são **observacionais**: as associações (p.ex. cliques ↔ sucesso)
