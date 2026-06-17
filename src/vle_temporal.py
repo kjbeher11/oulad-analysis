@@ -130,16 +130,21 @@ def clicks_by_activity_per_student(
     df_vle_meta: pd.DataFrame,
     activities: List[str] | None = None,
     n: int = 8,
+    as_proportion: bool = False,
 ) -> pd.DataFrame:
     """
     Tabla ancha de clics por estudante-curso desglosados por activity_type.
 
     Útil para enriquecer la segmentación K-Means con la dimensión de *qué tipo*
-    de actividad usa cada estudante (no solo cuántos clics totales).
+    de actividad usa cada estudante.
 
-    Devuelve un DataFrame con las claves estudante-curso y una columna por cada
-    tipo de actividad, nombrada `act_<tipo>` (clics totales en toda la
-    presentación). Si `activities` es None, usa los `n` tipos con más clics.
+    - `as_proportion=False` (por defecto): cada `act_<tipo>` son los clics
+      absolutos en ese tipo.
+    - `as_proportion=True`: cada `act_<tipo>` es la **proporción** (0-1) de los
+      clics del estudante que va a ese tipo. Captura el *estilo* de aprendizaje
+      independientemente del volumen total (recomendado para clustering).
+
+    Si `activities` es None, usa los `n` tipos con más clics.
     """
     site2act = df_vle_meta.set_index("id_site")["activity_type"]
     df = df_vle[["id_student", "code_module", "code_presentation", "id_site", "sum_click"]].copy()
@@ -158,5 +163,10 @@ def clicks_by_activity_per_student(
         .unstack(fill_value=0)
     )
     piv = piv.reindex(columns=activities, fill_value=0)
+
+    if as_proportion:
+        totals = piv.sum(axis=1)
+        piv = piv.div(totals.where(totals > 0, 1), axis=0)  # 0 si el estudante no tuvo clics
+
     piv.columns = [f"act_{c}" for c in piv.columns]
     return piv.reset_index()

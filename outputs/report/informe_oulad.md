@@ -214,21 +214,24 @@ primeiro mês do curso.
 `p6_C_entrega_tardia.png`.
 
 ### Segmentação com K-Means
-Features: cliques totais, score médio, dias ativos, escolaridade, IMD **e os
-cliques por `activity_type`** (top 8 tipos). Com **K = 4** clusters (método do
-cotovelo) e PCA 2D que explica **50,4%** da variância, emergem perfis claros:
+Features: cliques totais, score médio, dias ativos, escolaridade, IMD **e as
+proporções de cliques por `activity_type`** (top 8 tipos — captam o *estilo* de
+uso, não só o volume). Com **K = 4** clusters (método do cotovelo) e PCA 2D que
+explica **36,4%** da variância, emergem perfis claros:
 
 | Cluster | N | Cliques médios | Score médio | Dias ativos | Perfil |
 |---:|---:|---:|---:|---:|---|
-| 3 | 674 | 6.939 | 84,1 | 206 | **Elite / hiperativos** (37,5% distinção, 1,6% evasão). |
-| 0 | 2.272 | 4.934 | 81,0 | 147 | **Alto desempenho / muito ativos** (25,2% distinção). |
-| 1 | 7.577 | 1.969 | 79,4 | 103 | Bom desempenho, atividade média-alta. |
-| 2 | 15.034 | 561 | 67,6 | 36 | **Baixo desempenho / em risco** (31,4% reprovação, 27,0% evasão). |
+| 0 | 5.227 | 3.899 | 81,9 | 133 | **Alto engajamento e desempenho** (24,1% distinção, 2,3% evasão). |
+| 3 | 4.475 | 1.159 | 77,9 | 73 | Bom desempenho, atividade moderada. |
+| 2 | 9.902 | 964 | 69,8 | 45 | Desempenho médio (25,9% reprovação, 21,5% evasão). |
+| 1 | 5.953 | 694 | 65,6 | 54 | **Em risco** (31,3% reprovação, 26,2% evasão). |
 
-Ao incluir o `activity_type`, os perfis passam a refletir não só *quanto* o
-estudante clica, mas *em que tipo de recurso* — separando melhor o grupo de
-elite (uso intenso de conteúdo e fórum) do grupo em risco (pouca atividade e
-predomínio de navegação).
+Ao usar as **proporções** de `activity_type` (em vez de contagens absolutas), a
+segmentação deixa de ser um simples ranking por volume de cliques: note que os
+clusters 1, 2 e 3 têm volumes parecidos (694–1.159 cliques) mas resultados bem
+diferentes, porque agora separam-se pelo *estilo* de uso. O custo é que o PCA 2D
+explica menos variância (36,4%), já que o espaço de features é mais
+alto-dimensional — a projeção 2D é apenas uma referência visual.
 
 *Figuras:* `p7_A_metodo_codo.png`, `p7_B_pca_clusters.png`.
 
@@ -270,9 +273,9 @@ só *quanto* o estudante clica, mas *em que tipo de recurso*.
 4. **A deficiência eleva o risco de evasão** (OR = 1,49; 39,3% vs 30,3% de
    evasão), indicando a necessidade de apoio específico.
 5. **Há grande heterogeneidade entre módulos**: AAA aprova 71% enquanto CCC tem
-   evasão de 44,5%; o clustering (com features de `activity_type`) isola um
-   grande segmento "em risco" (~15.000 estudantes) com baixa atividade, 31% de
-   reprovação e 27% de evasão.
+   evasão de 44,5%; o clustering (com proporções de `activity_type`) separa dois
+   perfis de baixo desempenho (~16.000 estudantes) com 22–26% de evasão e estilo
+   de uso pobre.
 
 ### Limitações da análise
 - Os dados são **observacionais**: as associações (p.ex. cliques ↔ sucesso)
