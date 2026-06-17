@@ -179,5 +179,71 @@
       "Fail": 22.7,
       "Withdrawn": 18.4
     }
+  ],
+  "p8_composition_pct": {
+    "Distinction": {
+      "oucontent": 28.0,
+      "forumng": 23.7,
+      "homepage": 17.6,
+      "quiz": 17.3,
+      "subpage": 7.0,
+      "ouwiki": 3.1,
+      "resource": 2.0,
+      "url": 1.3
+    },
+    "Pass": {
+      "oucontent": 30.5,
+      "forumng": 19.8,
+      "homepage": 17.4,
+      "quiz": 17.2,
+      "subpage": 8.3,
+      "ouwiki": 2.7,
+      "resource": 2.5,
+      "url": 1.4
+    },
+    "Fail": {
+      "oucontent": 28.1,
+      "forumng": 18.0,
+      "homepage": 18.2,
+      "quiz": 18.2,
+      "subpage": 10.5,
+      "ouwiki": 2.0,
+      "resource": 3.5,
+      "url": 1.6
+    },
+    "Withdrawn": {
+      "oucontent": 24.8,
+      "forumng": 21.7,
+      "homepage": 19.1,
+      "quiz": 16.8,
+      "subpage": 10.7,
+      "ouwiki": 1.9,
+      "resource": 3.6,
+      "url": 1.5
+    }
+  },
+  "p8_auc_por_corte": {
+    "0": 0.6861,
+    "1": 0.7099,
+    "2": 0.7171,
+    "3": 0.7197,
+    "4": 0.7262,
+    "6": 0.741,
+    "8": 0.7523,
+    "10": 0.7627,
+    "15": 0.7895,
+    "20": 0.8278
+  },
+  "p8_semana_auc_0_70": 1,
+  "p8_semana_auc_0_80": 20,
+  "p8_top_activities": [
+    "oucontent",
+    "forumng",
+    "homepage",
+    "quiz",
+    "subpage",
+    "ouwiki",
+    "resource",
+    "url"
   ]
 }

@@ -37,7 +37,8 @@ oulad-analysis/
 │   ├── __init__.py
 │   ├── load_data.py          # Carregamento, verificação e inspeção dos CSV
 │   ├── preprocess.py         # Limpeza e construção do df_master
-│   └── visualizations.py     # Utilitários de plotagem reutilizáveis
+│   ├── visualizations.py     # Utilitários de plotagem reutilizáveis
+│   └── vle_temporal.py       # Análise temporal de cliques por activity_type
 ├── outputs/
 │   ├── figures/              # 28 visualizações em PNG 
 │   └── report/
@@ -113,7 +114,7 @@ Todo o código usa `pathlib` (caminhos relativos) e `random_state=42`.
 
 ## Visualizações
 
-As 28 figuras são salvas em `outputs/figures/` (rótulos em inglês). Algumas em
+As figuras são salvas em `outputs/figures/` (rótulos em inglês). Algumas em
 destaque:
 
 | Figura | Descrição |
@@ -124,6 +125,13 @@ destaque:
 | `p4_D_curva_abandono.png` | Curva acumulada de evasão por dia do curso. |
 | `p5_D_heatmap_metricas.png` | Métricas (aprovação/evasão/...) por módulo. |
 | `p7_B_pca_clusters.png` | Segmentação K-Means no espaço PCA 2D. |
+| `p8_C_predictive_window.png` | Poder preditivo precoce (AUC) por semana de atividade. |
+| 🔹 `p8_interactive_activity_weekly.html` | **Visualização interativa (Plotly)**: cliques médios por semana e `activity_type`, com menu por resultado. |
+
+> A análise temporal por `activity_type` (seção 12 do notebook) cruza
+> `studentVle` × `vle` e responde a três ângulos: padrões semanais, janela
+> preditiva e composição de atividades por resultado. O destaque é o gráfico
+> **interativo** `p8_interactive_activity_weekly.html` (abre no navegador).
 
 Completo: [`outputs/report/informe_oulad.md`](outputs/report/informe_oulad.md)
 

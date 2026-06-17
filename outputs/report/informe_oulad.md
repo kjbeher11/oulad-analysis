@@ -226,6 +226,36 @@ variância, emergem perfis claros:
 
 *Figuras:* `p7_A_metodo_codo.png`, `p7_B_pca_clusters.png`.
 
+### Bônus 8 — Análise temporal do clique por `activity_type` (VLE)
+Esta seção explora a dimensão mais rica do dataset: o clique diário desagregado
+por **tipo de atividade** (`activity_type`), cruzando `studentVle` com `vle`.
+Os tipos dominantes são **oucontent, forumng, quiz e homepage**.
+
+**Janela preditiva (achado central):** treinando uma regressão logística sobre
+os cliques acumulados por tipo de atividade, o poder preditivo do sucesso
+(Pass/Distinction vs Fail/Withdrawn) evolui assim:
+
+| Semana de corte | 0 | 1 | 4 | 10 | 20 |
+|---|---:|---:|---:|---:|---:|
+| ROC-AUC | 0,69 | 0,71 | 0,73 | 0,76 | 0,83 |
+
+- **Já na semana 1 o AUC atinge 0,70** e na semana 20 chega a **0,83**: é
+  possível prever o resultado **muito cedo**, o que viabiliza alertas de
+  retenção nas primeiras semanas.
+
+**Composição por resultado:** quem obtém **Distinction** concentra mais cliques
+em **conteúdo** (`oucontent` 28%) e **fórum** (`forumng` 24%), enquanto os
+**desistentes** usam proporcionalmente menos conteúdo (`oucontent` 25%) e mais
+**navegação** (`homepage`/`subpage`) — engajam-se com a estrutura, mas não com o
+material de aprendizagem.
+
+**Visualização interativa:** `p8_interactive_activity_weekly.html` (Plotly) — área
+empilhada de cliques médios por estudante, por semana e tipo de atividade, com
+menu para alternar entre os grupos de resultado.
+
+*Figuras:* `p8_A_weekly_heatmap.png`, `p8_B_composition_by_result.png`,
+`p8_C_predictive_window.png`, `p8_interactive_activity_weekly.html`.
+
 ---
 
 ## 5. Conclusões e Recomendações
