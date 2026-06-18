@@ -247,7 +247,7 @@ menu para alternar entre os grupos de resultado.
 
 ---
 
-## 5. Conclusões e Recomendações
+## 5. Conclusões
 
 ### Top 5 achados mais importantes
 1. **A evasão é o principal problema**: 31,2% de evasão global e apenas 47,2% de
@@ -273,15 +273,6 @@ menu para alternar entre os grupos de resultado.
   do que as de módulos massivos como BBB ou FFF.
 - `imd_band` imputado com a moda pode atenuar levemente seu efeito real.
 
-### Próximos passos sugeridos
-1. Construir um **modelo preditivo de evasão precoce** (regressão logística /
-   gradient boosting) usando cliques das primeiras 4 semanas.
-2. Desenhar um **sistema de alerta antecipado** que acione apoio quando um
-   estudante cair abaixo de um limiar de atividade no VLE.
-3. Analisar a **interação por tipo de atividade do VLE** (`vle.activity_type`)
-   para identificar quais materiais predizem melhor o sucesso.
-4. Avaliar intervenções focadas no módulo **CCC** e em estudantes com
-   deficiência.
 
 ---
 
