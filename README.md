@@ -62,26 +62,6 @@ oulad-analysis/
 
 Chave de junção do estudante: `(id_student, code_module, code_presentation)`.
 
-## Instalação e Uso
-
-```bash
-git clone <url-do-repositorio>
-cd oulad-analysis
-
-# (Opcional) ambiente virtual
-python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
-
-pip install -r requirements.txt
-
-# Coloque os 7 CSV do OULAD em data/raw/ e abra o notebook:
-jupyter notebook notebooks/analysis.ipynb
-```
-
-> O notebook verifica automaticamente que os 7 CSV existam em `data/raw/` e
-> lança um erro claro se faltar algum. Pode ser executado do início ao fim com
-> **Run All Cells**. Também pode ser executado em lote com
-> `jupyter nbconvert --to notebook --execute --inplace notebooks/analysis.ipynb`.
-
 ## Metodologia
 
 1. **Carregamento** otimizado dos 7 CSV (dtypes reduzidos para os 10,6M de
@@ -126,12 +106,7 @@ destaque:
 | `p5_D_heatmap_metricas.png` | Métricas (aprovação/evasão/...) por módulo. |
 | `p7_B_pca_clusters.png` | Segmentação K-Means no espaço PCA 2D. |
 | `p8_A_weekly_heatmap.png` | Mix semanal de atividades por `activity_type`. |
-| 🔹 `p8_interactive_activity_weekly.html` | **Visualização interativa (Plotly)**: cliques médios por semana e `activity_type`, com menu por resultado. |
-
-> A análise por `activity_type` (seção 12 do notebook) cruza `studentVle` × `vle`
-> e cobre padrões semanais e a composição de atividades por resultado. O destaque
-> é o gráfico **interativo** `p8_interactive_activity_weekly.html` (abre no
-> navegador).
+| `p8_interactive_activity_weekly.html` | Visualização cliques médios por semana e `activity_type`, com menu por resultado. |
 
 Completo: [`outputs/report/informe_oulad.md`](outputs/report/informe_oulad.md)
 
